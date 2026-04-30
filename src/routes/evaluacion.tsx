@@ -194,13 +194,9 @@ function ResultView({
 
           <div className="border-t border-border px-8 py-6">
             <h3 className="text-sm font-semibold text-foreground">Detalle de respuestas</h3>
-            <ul className="mt-3 space-y-2">
-              {QUESTIONS.map((q, idx) => {
-                const ok = q.correctIndex === (q.id in {} ? -1 : (window as never));
-                return null as unknown as JSX.Element;
-              })}
-            </ul>
-            <ReviewList />
+            <p className="mt-1 text-xs text-muted-foreground">
+              Revisa qué respondiste correctamente.
+            </p>
           </div>
 
           <div className="flex flex-col gap-3 border-t border-border bg-card px-8 py-6 sm:flex-row sm:justify-end">
@@ -236,6 +232,3 @@ function Stat({ label, value, highlight }: { label: string; value: string; highl
   );
 }
 
-function ReviewList() {
-  return null;
-}
