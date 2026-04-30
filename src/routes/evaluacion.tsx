@@ -41,7 +41,7 @@ function ExamPage() {
   };
 
   if (submitted) {
-    return <ResultView user={user} result={result} onRetry={reset} />;
+    return <ResultView user={user} result={result} answers={answers} onRetry={reset} />;
   }
 
   return (
@@ -140,10 +140,12 @@ function ExamPage() {
 function ResultView({
   user,
   result,
+  answers,
   onRetry,
 }: {
   user: CourseUser | null;
   result: { correct: number; total: number; score: number; passed: boolean };
+  answers: Record<string, number>;
   onRetry: () => void;
 }) {
   const passed = result.passed;
@@ -194,9 +196,36 @@ function ResultView({
 
           <div className="border-t border-border px-8 py-6">
             <h3 className="text-sm font-semibold text-foreground">Detalle de respuestas</h3>
-            <p className="mt-1 text-xs text-muted-foreground">
-              Revisa qué respondiste correctamente.
-            </p>
+            <ul className="mt-4 space-y-3">
+              {QUESTIONS.map((q, idx) => {
+                const userAns = answers[q.id];
+                const ok = userAns === q.correctIndex;
+                return (
+                  <li key={q.id} className="rounded-lg border border-border p-3">
+                    <div className="flex items-start gap-2">
+                      {ok ? (
+                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-success" />
+                      ) : (
+                        <XCircle className="mt-0.5 h-4 w-4 shrink-0 text-destructive" />
+                      )}
+                      <div className="text-sm">
+                        <p className="font-medium text-foreground">
+                          {idx + 1}. {q.prompt}
+                        </p>
+                        <p className="mt-1 text-muted-foreground">
+                          Tu respuesta: {q.options[userAns]}
+                        </p>
+                        {!ok && (
+                          <p className="mt-0.5 text-success">
+                            Correcta: {q.options[q.correctIndex]}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
           </div>
 
           <div className="flex flex-col gap-3 border-t border-border bg-card px-8 py-6 sm:flex-row sm:justify-end">
