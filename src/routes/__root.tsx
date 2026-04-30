@@ -29,14 +29,18 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { title: "induccionsarlaft-hlmp" },
+      { name: "description", content: "SARLAFT Ready is an induction app for SARLAFT-FPADM training with a final evaluation." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "induccionsarlaft-hlmp" },
+      { property: "og:description", content: "SARLAFT Ready is an induction app for SARLAFT-FPADM training with a final evaluation." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "induccionsarlaft-hlmp" },
+      { name: "twitter:description", content: "SARLAFT Ready is an induction app for SARLAFT-FPADM training with a final evaluation." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/5d687584-b84d-4539-a2e0-c3d0faf7848f/id-preview-f54ca17b--ac94a9ac-20fe-4903-bed3-7c403d53dfa7.lovable.app-1777562125046.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/5d687584-b84d-4539-a2e0-c3d0faf7848f/id-preview-f54ca17b--ac94a9ac-20fe-4903-bed3-7c403d53dfa7.lovable.app-1777562125046.png" },
     ],
     links: [
       {
