@@ -1,11 +1,8 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { useState } from "react";
-import { ShieldCheck, BookOpen, ClipboardCheck, Award } from "lucide-react";
+import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
+import { ShieldCheck, BookOpen, ClipboardCheck, Award, Sparkles, ArrowRight, Lock, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { COURSE_META, LESSONS } from "@/course/content";
-import { saveUser } from "@/course/store";
+import { clearUser } from "@/course/store";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -14,7 +11,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Curso de inducción SARLAFT con lecciones interactivas y evaluación final.",
+          "Curso interactivo de inducción SARLAFT–FPADM con lecciones y evaluación final.",
       },
     ],
   }),
@@ -23,21 +20,9 @@ export const Route = createFileRoute("/")({
 
 function Welcome() {
   const navigate = useNavigate();
-  const [name, setName] = useState("");
-  const [idNumber, setIdNumber] = useState("");
-  const [error, setError] = useState("");
 
-  const start = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (name.trim().length < 3 || idNumber.trim().length < 4) {
-      setError("Por favor ingresa tu nombre completo y un documento válido.");
-      return;
-    }
-    saveUser({
-      name: name.trim(),
-      idNumber: idNumber.trim(),
-      startedAt: new Date().toISOString(),
-    });
+  const start = () => {
+    clearUser();
     navigate({ to: "/leccion/$index", params: { index: "0" } });
   };
 
@@ -48,94 +33,112 @@ function Welcome() {
         className="relative overflow-hidden text-primary-foreground"
         style={{ background: "var(--gradient-hero)" }}
       >
-        <div className="absolute inset-0 opacity-10 pointer-events-none">
-          <div className="absolute -top-20 -right-20 h-96 w-96 rounded-full bg-accent blur-3xl" />
-          <div className="absolute -bottom-32 -left-20 h-96 w-96 rounded-full bg-primary-glow blur-3xl" />
-        </div>
-        <div className="relative mx-auto max-w-6xl px-6 py-16 md:py-24">
-          <div className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/20 bg-primary-foreground/10 px-4 py-1.5 text-xs font-medium uppercase tracking-wider backdrop-blur">
-            <ShieldCheck className="h-3.5 w-3.5" />
-            Curso de cumplimiento
+        {/* Animated mesh */}
+        <div className="absolute inset-0 opacity-40 pointer-events-none" style={{ background: "var(--gradient-mesh)" }} />
+        {/* Grid pattern */}
+        <div
+          className="absolute inset-0 opacity-[0.07] pointer-events-none"
+          style={{
+            backgroundImage:
+              "linear-gradient(to right, white 1px, transparent 1px), linear-gradient(to bottom, white 1px, transparent 1px)",
+            backgroundSize: "48px 48px",
+          }}
+        />
+        <div className="absolute -top-32 -right-32 h-[28rem] w-[28rem] rounded-full bg-accent/30 blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-40 -left-32 h-[28rem] w-[28rem] rounded-full bg-primary-glow/40 blur-3xl pointer-events-none" />
+
+        <div className="relative mx-auto max-w-6xl px-6 py-20 md:py-28">
+          <div className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/25 bg-primary-foreground/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] backdrop-blur">
+            <Sparkles className="h-3.5 w-3.5" />
+            Plataforma de cumplimiento
           </div>
-          <h1 className="mt-6 text-4xl md:text-6xl font-bold tracking-tight">
+          <h1 className="mt-8 text-4xl md:text-6xl font-bold tracking-tight leading-[1.05]">
             {COURSE_META.title}
           </h1>
-          <p className="mt-4 max-w-2xl text-lg md:text-xl text-primary-foreground/85">
+          <p className="mt-5 max-w-2xl text-base md:text-lg text-primary-foreground/85 leading-relaxed">
             {COURSE_META.subtitle}
           </p>
-        </div>
-      </section>
 
-      {/* Content */}
-      <section className="mx-auto max-w-6xl px-6 py-12 md:py-16">
-        <div className="grid gap-10 md:grid-cols-2 md:gap-16">
-          {/* Info */}
-          <div>
-            <h2 className="text-2xl font-semibold text-foreground">
-              ¿Qué encontrarás en este curso?
-            </h2>
-            <ul className="mt-6 space-y-5">
-              <Feature
-                icon={<BookOpen className="h-5 w-5" />}
-                title={`${LESSONS.length} lecciones`}
-                desc="Conceptos clave de SARLAFT explicados de forma clara y aplicada."
-              />
-              <Feature
-                icon={<ClipboardCheck className="h-5 w-5" />}
-                title="Evaluación final"
-                desc={`Examen de opción múltiple. Aprueba con ${COURSE_META.passingScore}% o más.`}
-              />
-              <Feature
-                icon={<Award className="h-5 w-5" />}
-                title="Constancia personal"
-                desc="Al aprobar verás un resumen con tu nombre y resultado."
-              />
-            </ul>
+          <div className="mt-10 flex flex-wrap items-center gap-4">
+            <Button
+              size="lg"
+              onClick={start}
+              className="group bg-primary-foreground text-primary hover:bg-primary-foreground/90 shadow-xl px-7"
+            >
+              Iniciar inducción
+              <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+            </Button>
+            <div className="flex items-center gap-2 text-sm text-primary-foreground/80">
+              <Lock className="h-4 w-4" />
+              Tus datos se solicitan al final, en la evaluación
+            </div>
           </div>
 
-          {/* Form */}
-          <div
-            className="rounded-2xl border border-border bg-card p-8 md:p-10"
-            style={{ boxShadow: "var(--shadow-elegant)" }}
-          >
-            <h3 className="text-xl font-semibold text-card-foreground">
-              Comencemos
-            </h3>
-            <p className="mt-1 text-sm text-muted-foreground">
-              Ingresa tus datos para iniciar la inducción.
-            </p>
-            <form onSubmit={start} className="mt-6 space-y-5">
-              <div className="space-y-2">
-                <Label htmlFor="name">Nombre completo</Label>
-                <Input
-                  id="name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="Ej. María Pérez Gómez"
-                  autoComplete="name"
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="id">Documento de identidad</Label>
-                <Input
-                  id="id"
-                  value={idNumber}
-                  onChange={(e) => setIdNumber(e.target.value)}
-                  placeholder="Número de cédula"
-                  inputMode="numeric"
-                />
-              </div>
-              {error && (
-                <p className="text-sm text-destructive">{error}</p>
-              )}
-              <Button type="submit" size="lg" className="w-full">
-                Iniciar curso
-              </Button>
-            </form>
+          {/* Stats strip */}
+          <div className="mt-14 grid grid-cols-3 gap-3 max-w-xl">
+            <Stat n={LESSONS.length} l="Lecciones" />
+            <Stat n={10} l="Preguntas" />
+            <Stat n={`${COURSE_META.passingScore}%`} l="Mínimo" />
           </div>
         </div>
       </section>
+
+      {/* Features */}
+      <section className="mx-auto max-w-6xl px-6 py-16 md:py-20">
+        <div className="grid gap-5 md:grid-cols-3">
+          <Feature
+            icon={<BookOpen className="h-5 w-5" />}
+            title="Contenido modular"
+            desc="Lecciones cortas, claras y aplicadas al sector salud."
+            badge="01"
+          />
+          <Feature
+            icon={<Zap className="h-5 w-5" />}
+            title="Avance lineal"
+            desc="Recorrido guiado con barra de progreso en tiempo real."
+            badge="02"
+          />
+          <Feature
+            icon={<ClipboardCheck className="h-5 w-5" />}
+            title="Evaluación interactiva"
+            desc={`Una pregunta por pantalla. Aprueba con ${COURSE_META.passingScore}% o más.`}
+            badge="03"
+          />
+        </div>
+
+        <div className="mt-12 flex flex-col items-center text-center">
+          <div className="inline-flex h-12 w-12 items-center justify-center rounded-full" style={{ background: "var(--gradient-accent)" }}>
+            <Award className="h-6 w-6 text-primary-foreground" />
+          </div>
+          <p className="mt-4 max-w-md text-sm text-muted-foreground">
+            Al aprobar verás un resumen con tu nombre, documento y resultado final.
+          </p>
+          <Button size="lg" className="mt-6" onClick={start}>
+            Comenzar ahora
+            <ArrowRight className="ml-1 h-4 w-4" />
+          </Button>
+        </div>
+      </section>
+
+      <footer className="border-t border-border">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6 text-xs text-muted-foreground">
+          <div className="flex items-center gap-2">
+            <ShieldCheck className="h-4 w-4 text-primary" />
+            Hospital Local del Municipio de Los Patios
+          </div>
+          <Link to="/" className="hover:text-foreground">SARLAFT–FPADM</Link>
+        </div>
+      </footer>
     </main>
+  );
+}
+
+function Stat({ n, l }: { n: number | string; l: string }) {
+  return (
+    <div className="rounded-xl border border-primary-foreground/15 bg-primary-foreground/5 px-4 py-3 backdrop-blur">
+      <p className="text-2xl font-bold tabular-nums">{n}</p>
+      <p className="text-[11px] font-medium uppercase tracking-wider text-primary-foreground/70">{l}</p>
+    </div>
   );
 }
 
@@ -143,20 +146,24 @@ function Feature({
   icon,
   title,
   desc,
+  badge,
 }: {
   icon: React.ReactNode;
   title: string;
   desc: string;
+  badge: string;
 }) {
   return (
-    <li className="flex gap-4">
-      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-secondary text-secondary-foreground">
+    <div
+      className="group relative overflow-hidden rounded-2xl border border-border bg-card p-6 transition hover:-translate-y-1"
+      style={{ boxShadow: "var(--shadow-card)" }}
+    >
+      <div className="absolute right-4 top-4 text-xs font-mono text-muted-foreground/40">{badge}</div>
+      <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary transition group-hover:bg-primary group-hover:text-primary-foreground">
         {icon}
       </div>
-      <div>
-        <p className="font-medium text-foreground">{title}</p>
-        <p className="text-sm text-muted-foreground">{desc}</p>
-      </div>
-    </li>
+      <p className="mt-4 font-semibold text-foreground">{title}</p>
+      <p className="mt-1 text-sm text-muted-foreground leading-relaxed">{desc}</p>
+    </div>
   );
 }
