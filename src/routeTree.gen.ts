@@ -12,7 +12,6 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as EvaluacionRouteImport } from './routes/evaluacion'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as LeccionIndexRouteImport } from './routes/leccion.$index'
-import { Route as LeccionRouteImport } from './routes/leccion.'
 
 const EvaluacionRoute = EvaluacionRouteImport.update({
   id: '/evaluacion',
@@ -29,43 +28,34 @@ const LeccionIndexRoute = LeccionIndexRouteImport.update({
   path: '/leccion/$index',
   getParentRoute: () => rootRouteImport,
 } as any)
-const LeccionRoute = LeccionRouteImport.update({
-  id: '/leccion/',
-  path: '/leccion/',
-  getParentRoute: () => rootRouteImport,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/evaluacion': typeof EvaluacionRoute
-  '/leccion/': typeof LeccionRoute
   '/leccion/$index': typeof LeccionIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/evaluacion': typeof EvaluacionRoute
-  '/leccion': typeof LeccionRoute
   '/leccion/$index': typeof LeccionIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/evaluacion': typeof EvaluacionRoute
-  '/leccion/': typeof LeccionRoute
   '/leccion/$index': typeof LeccionIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/evaluacion' | '/leccion/' | '/leccion/$index'
+  fullPaths: '/' | '/evaluacion' | '/leccion/$index'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/evaluacion' | '/leccion' | '/leccion/$index'
-  id: '__root__' | '/' | '/evaluacion' | '/leccion/' | '/leccion/$index'
+  to: '/' | '/evaluacion' | '/leccion/$index'
+  id: '__root__' | '/' | '/evaluacion' | '/leccion/$index'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   EvaluacionRoute: typeof EvaluacionRoute
-  LeccionRoute: typeof LeccionRoute
   LeccionIndexRoute: typeof LeccionIndexRoute
 }
 
@@ -92,20 +82,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LeccionIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/leccion/': {
-      id: '/leccion/'
-      path: '/leccion'
-      fullPath: '/leccion/'
-      preLoaderRoute: typeof LeccionRouteImport
-      parentRoute: typeof rootRouteImport
-    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   EvaluacionRoute: EvaluacionRoute,
-  LeccionRoute: LeccionRoute,
   LeccionIndexRoute: LeccionIndexRoute,
 }
 export const routeTree = rootRouteImport
