@@ -4,7 +4,6 @@ import { ArrowLeft, ArrowRight, ShieldCheck, Info } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { LESSONS, COURSE_META } from "@/course/content";
-import { getUser } from "@/course/store";
 
 export const Route = createFileRoute("/leccion/$index")({
   component: LessonPage,
@@ -17,10 +16,6 @@ function LessonPage() {
   const lesson = LESSONS[i];
   const isLast = i === LESSONS.length - 1;
   const progress = ((i + 1) / (LESSONS.length + 1)) * 100;
-
-  useEffect(() => {
-    if (!getUser()) navigate({ to: "/" });
-  }, [navigate]);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
