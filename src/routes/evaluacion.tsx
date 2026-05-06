@@ -8,6 +8,7 @@ import { Progress } from "@/components/ui/progress";
 import { QUESTIONS, COURSE_META } from "@/course/content";
 import { saveUser, saveResponse, type CourseUser } from "@/course/store";
 import { guardarEnSheets } from "@/lib/sheets";
+import { generateCertificate } from "@/lib/certificate";
 
 export const Route = createFileRoute("/evaluacion")({
   component: ExamPage,
@@ -286,6 +287,28 @@ function ResultView({ user, result, answers, onRetry }: {
             {!passed && <Button variant="outline" onClick={onRetry}><RotateCcw className="mr-2 h-4 w-4" /> Reintentar evaluación</Button>}
             <Button asChild><Link to="/">Volver al inicio</Link></Button>
           </div>
+          {passed && user && (
+  <div className="border-t border-border bg-primary/5 px-8 py-6 text-center">
+    <p className="text-sm text-muted-foreground mb-4">
+      ¡Felicitaciones! Puedes descargar tu certificado de aprobación.
+    </p>
+    <Button
+      size="lg"
+      className="gap-2"
+      onClick={() =>
+        generateCertificate({
+          nombre: user.name,
+          cedula: user.idNumber,
+          puntaje: result.score,
+          fecha: new Date().toLocaleDateString("es-CO", { dateStyle: "long" }),
+        })
+      }
+    >
+      <Award className="h-4 w-4" />
+      Descargar certificado PDF
+    </Button>
+  </div>
+)}
         </div>
       </section>
     </main>
