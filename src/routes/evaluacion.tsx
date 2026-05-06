@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Progress } from "@/components/ui/progress";
 import { QUESTIONS, COURSE_META } from "@/course/content";
 import { saveUser, saveResponse, type CourseUser } from "@/course/store";
+import { guardarEnSheets } from "@/lib/sheets";
 
 export const Route = createFileRoute("/evaluacion")({
   head: () => ({ meta: [{ title: "Evaluación final — SARLAFT" }] }),
@@ -34,17 +35,32 @@ function ExamPage() {
   };
 
   const handleSubmit = () => {
-    if (!user) return;
-    saveResponse({
-      user,
-      answers,
-      score: result.score,
-      passed: result.passed,
-      submittedAt: new Date().toISOString(),
-    });
-    setStage("result");
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+  if (!user) return;
+  saveResponse({
+    user,
+    answers,
+    score: result.score,
+    passed: result.passed,
+    submittedAt: new Date().toISOString(),
+  });
+
+  // Guardar en Google Sheets
+  guardarEnSheets({
+    nombre: user.name,
+    cedula: user.idNumber,
+    puntaje: result.score,
+    correctas: result.correct,
+    total: result.total,
+    aprobado: result.passed,
+    respuestas: QUESTIONS.map((q, i) =>
+      `P${i + 1}: ${q.options[answers[q.id]] ?? "Sin respuesta"}`
+    ).join(" | "),
+    fecha: new Date().toLocaleString("es-CO"),
+  });
+
+  setStage("result");
+  window.scrollTo({ top: 0, behavior: "smooth" });
+};
 
   const reset = () => {
     setAnswers({});
