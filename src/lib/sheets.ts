@@ -1,6 +1,5 @@
 const APPS_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbzKqcNEIj5eCr28vcmfoJsTK84iSlIf_00OF_rU6GncddZFpFFoFtTyfujoA1Jbkfa-Kw/exec";
-
+  "https://script.google.com/macros/s/AKfycbz8Bu901YtC_wp1v2bB09lWVhGNcu_xN1n8WQwBCX57YikeCwHyvzkp0fsgT7IBPhOXgQ/exec";
 export interface EvaluacionData {
   nombre: string;
   cedula: string;
