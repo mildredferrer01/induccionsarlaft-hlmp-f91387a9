@@ -49,7 +49,7 @@ export function generateCertificate(data: CertificateData) {
   doc.setTextColor(255, 255, 255);
   doc.setFontSize(9);
   doc.setFont("helvetica", "bold");
-  doc.text("NIT: 800.214.796-7", W - 16, 17, { align: "right" });
+  doc.text("NIT: 807004393-5", W - 16, 17, { align: "right" });
   doc.setFont("helvetica", "normal");
   doc.setFontSize(8);
   doc.text("Los Patios, Norte de Santander", W - 16, 24, { align: "right" });
