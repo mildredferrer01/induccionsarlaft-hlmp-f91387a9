@@ -4,10 +4,26 @@ import { ArrowLeft, ArrowRight, ShieldCheck, Info } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { LESSONS, COURSE_META } from "@/course/content";
+import {
+  Visual1, Visual2, Visual3, Visual4,
+  Visual5, Visual6, Visual7, Visual8, Visual9,
+} from "@/components/visuals/LessonVisuals";
 
 export const Route = createFileRoute("/leccion/$index")({
   component: LessonPage,
 });
+
+const VISUALS: Record<string, React.ReactNode> = {
+  "que-es": <Visual1 />,
+  "conceptos": <Visual2 />,
+  "sanciones": <Visual3 />,
+  "regulacion": <Visual4 />,
+  "etapas": <Visual5 />,
+  "documentacion": <Visual6 />,
+  "herramientas": <Visual7 />,
+  "rol-trabajadores": <Visual8 />,
+  "cierre": <Visual9 />,
+};
 
 function LessonPage() {
   const { index } = Route.useParams();
@@ -36,9 +52,7 @@ function LessonPage() {
       <Header />
       <div className="mx-auto max-w-3xl px-6 pt-6">
         <div className="flex items-center justify-between text-xs font-medium text-muted-foreground">
-          <span>
-            Lección {i + 1} de {LESSONS.length}
-          </span>
+          <span>Lección {i + 1} de {LESSONS.length}</span>
           <span>{Math.round(progress)}%</span>
         </div>
         <Progress value={progress} className="mt-2 h-1.5" />
@@ -53,6 +67,9 @@ function LessonPage() {
         <h1 className="mt-2 text-3xl md:text-4xl font-bold tracking-tight text-foreground">
           {lesson.title}
         </h1>
+
+        {/* Visual didáctico al inicio de la lección */}
+        {VISUALS[lesson.id]}
 
         <div className="mt-8 space-y-6">
           {lesson.blocks.map((b, idx) => {
@@ -80,10 +97,7 @@ function LessonPage() {
                 </ul>
               );
             return (
-              <div
-                key={idx}
-                className="rounded-xl border-l-4 border-accent bg-secondary p-5"
-              >
+              <div key={idx} className="rounded-xl border-l-4 border-accent bg-secondary p-5">
                 <div className="flex items-center gap-2 text-secondary-foreground">
                   <Info className="h-4 w-4" />
                   <p className="text-sm font-semibold">{b.title}</p>
