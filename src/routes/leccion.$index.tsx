@@ -7,7 +7,7 @@ export const Route = createFileRoute("/leccion/$index")({
   component: LessonPage,
 });
 
-const SARA_MESSAGES: Record<string, string> = {
+const SHIELD_MESSAGES: Record<string, string> = {
   "que-es": "¡Bienvenido/a! Soy el Escudo SARLAFT, tu guía en este curso. Empecemos por lo más importante.",
   "conceptos": "Estos conceptos son la base legal del sistema. ¡Préstales mucha atención!",
   "sanciones": "Conocer las consecuencias nos ayuda a actuar con responsabilidad.",
@@ -35,12 +35,8 @@ function ShieldCharacter({ size = 56 }: { size?: number }) {
   return (
     <svg width={size} height={size * 1.2} viewBox="0 0 100 120" fill="none">
       <ellipse cx="50" cy="114" rx="28" ry="6" fill="#1B5E20" opacity="0.15"/>
-      <g style={{ transformOrigin: "50px 56px", animation: "spin 20s linear infinite" }}>
-        <ellipse cx="50" cy="56" rx="46" ry="13" fill="none" stroke="#4CAF50" strokeWidth="0.8" strokeDasharray="5 4" opacity="0.3"/>
-      </g>
-      <g style={{ transformOrigin: "50px 56px", animation: "spin 14s linear infinite reverse" }}>
-        <ellipse cx="50" cy="56" rx="40" ry="9" fill="none" stroke="#81C784" strokeWidth="0.6" strokeDasharray="3 5" opacity="0.2"/>
-      </g>
+      <ellipse cx="50" cy="56" rx="46" ry="13" fill="none" stroke="#4CAF50" strokeWidth="0.8" strokeDasharray="5 4" opacity="0.3" style={{transformOrigin:"50px 56px",animation:"spin 20s linear infinite"}}/>
+      <ellipse cx="50" cy="56" rx="40" ry="9" fill="none" stroke="#81C784" strokeWidth="0.6" strokeDasharray="3 5" opacity="0.2" style={{transformOrigin:"50px 56px",animation:"spin 14s linear infinite reverse"}}/>
       <path d="M50 8 L82 22 L82 60 Q82 88 50 102 Q18 88 18 60 L18 22 Z" fill="#1B5E20"/>
       <path d="M82 22 L88 29 L88 64 Q88 90 52 105 L50 102 Q82 88 82 60 Z" fill="#0A3D0A"/>
       <path d="M18 22 L12 29 L12 64 Q12 90 48 105 L50 102 Q18 88 18 60 Z" fill="#2E7D32"/>
@@ -64,289 +60,300 @@ function ShieldCharacter({ size = 56 }: { size?: number }) {
   );
 }
 
-function LessonBackground({ lessonId }: { lessonId: string }) {
-  const backgrounds: Record<string, JSX.Element> = {
-    "que-es": (
-      <svg style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }} viewBox="0 0 380 200" preserveAspectRatio="xMidYMid slice">
-        <g opacity="0.12">
-          <rect x="260" y="40" width="90" height="80" rx="4" fill="#2E7D32"/>
-          <rect x="275" y="25" width="60" height="25" rx="3" fill="#2E7D32"/>
-          <rect x="290" y="72" width="25" height="30" rx="2" fill="#1B5E20"/>
-          <rect x="328" y="72" width="18" height="20" rx="2" fill="#1B5E20"/>
-          <rect x="300" y="60" width="15" height="4" rx="1" fill="#E8F5E9"/>
-          <rect x="305" y="53" width="4" height="15" rx="1" fill="#E8F5E9"/>
-          <rect x="303" y="34" width="14" height="5" rx="1" fill="#E8F5E9"/>
-          <rect x="307" y="30" width="5" height="12" rx="1" fill="#E8F5E9"/>
-        </g>
-        <g opacity="0.08">
-          <path d="M30 10 L90 30 L90 90 Q90 130 30 150 Q-30 130 -30 90 L-30 30 Z" fill="#4CAF50"/>
-        </g>
-        <g opacity="0.1">
-          <circle cx="60" cy="90" r="10" fill="#2E7D32"/>
-          <path d="M44 110 Q44 93 60 97 Q76 93 76 110 L76 130 L44 130 Z" fill="#2E7D32"/>
-          <circle cx="100" cy="85" r="8" fill="#4CAF50"/>
-          <path d="M87 102 Q87 88 100 91 Q113 88 113 102 L113 118 L87 118 Z" fill="#4CAF50"/>
-          <circle cx="140" cy="90" r="8" fill="#4CAF50"/>
-          <path d="M127 107 Q127 93 140 96 Q153 93 153 107 L153 123 L127 123 Z" fill="#4CAF50"/>
-        </g>
-        <line x1="200" y1="100" x2="10" y2="20" stroke="#4CAF50" strokeWidth="0.5" opacity="0.06"/>
-        <line x1="200" y1="100" x2="10" y2="180" stroke="#4CAF50" strokeWidth="0.5" opacity="0.06"/>
-        <circle cx="350" cy="180" r="30" fill="none" stroke="#4CAF50" strokeWidth="0.7" opacity="0.08" strokeDasharray="4 4"/>
-      </svg>
-    ),
-    "conceptos": (
-      <svg style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }} viewBox="0 0 380 200" preserveAspectRatio="xMidYMid slice">
-        <g opacity="0.12">
-          <rect x="49" y="20" width="3" height="100" rx="1.5" fill="#2E7D32"/>
-          <rect x="10" y="40" width="80" height="3" rx="1.5" fill="#2E7D32"/>
-          <line x1="10" y1="43" x2="10" y2="80" stroke="#2E7D32" strokeWidth="1.5"/>
-          <path d="M-5 80 Q10 90 25 80" fill="none" stroke="#2E7D32" strokeWidth="1.5"/>
-          <line x1="90" y1="43" x2="90" y2="88" stroke="#2E7D32" strokeWidth="1.5"/>
-          <path d="M75 88 Q90 98 105 88" fill="none" stroke="#2E7D32" strokeWidth="1.5"/>
-          <path d="M40 118 L60 118 L65 128 L35 128 Z" fill="#2E7D32"/>
-          <rect x="30" y="126" width="42" height="5" rx="2" fill="#2E7D32"/>
-        </g>
-        <g opacity="0.1">
-          <rect x="240" y="30" width="65" height="80" rx="10" fill="#1B5E20"/>
-          <path d="M248 30 Q248 10 265 10 Q282 10 282 30" fill="none" stroke="#2E7D32" strokeWidth="8" strokeLinecap="round"/>
-          <circle cx="272" cy="68" r="10" fill="#4CAF50" opacity="0.4"/>
-          <rect x="268" y="68" width="9" height="14" rx="4" fill="#E8F5E9" opacity="0.6"/>
-        </g>
-        <g opacity="0.08">
-          <rect x="280" y="130" width="50" height="60" rx="4" fill="#2E7D32"/>
-          <rect x="285" y="120" width="40" height="15" rx="2" fill="#2E7D32"/>
-          <rect x="295" y="148" width="12" height="20" rx="2" fill="#1B5E20"/>
-          <rect x="310" y="148" width="12" height="15" rx="2" fill="#1B5E20"/>
-        </g>
-        <circle cx="180" cy="160" r="35" fill="none" stroke="#4CAF50" strokeWidth="0.7" opacity="0.1" strokeDasharray="5 4"/>
-        <circle cx="180" cy="160" r="22" fill="none" stroke="#4CAF50" strokeWidth="0.5" opacity="0.08" strokeDasharray="3 5"/>
-      </svg>
-    ),
-    "sanciones": (
-      <svg style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }} viewBox="0 0 380 200" preserveAspectRatio="xMidYMid slice">
-        <g opacity="0.13">
-          <rect x="49" y="10" width="3" height="100" rx="1.5" fill="#2E7D32"/>
-          <rect x="10" y="30" width="80" height="3" rx="1.5" fill="#2E7D32"/>
-          <line x1="10" y1="33" x2="10" y2="68" stroke="#2E7D32" strokeWidth="1.5"/>
-          <path d="M-5 68 Q10 78 25 68" fill="none" stroke="#2E7D32" strokeWidth="1.5"/>
-          <line x1="90" y1="33" x2="90" y2="75" stroke="#2E7D32" strokeWidth="1.5"/>
-          <path d="M75 75 Q90 85 105 75" fill="none" stroke="#2E7D32" strokeWidth="1.5"/>
-          <path d="M40 110 L60 110 L65 120 L35 120 Z" fill="#2E7D32"/>
-          <rect x="30" y="118" width="42" height="5" rx="2" fill="#2E7D32"/>
-        </g>
-        <g opacity="0.11">
-          <rect x="250" y="20" width="65" height="80" rx="10" fill="#1B5E20"/>
-          <path d="M258 20 Q258 0 282 0 Q307 0 307 20" fill="none" stroke="#2E7D32" strokeWidth="8" strokeLinecap="round"/>
-          <circle cx="282" cy="58" r="10" fill="#4CAF50" opacity="0.4"/>
-          <rect x="278" y="58" width="9" height="14" rx="4" fill="#E8F5E9" opacity="0.6"/>
-        </g>
-        <g opacity="0.06">
-          <rect x="0" y="0" width="4" height="200" rx="2" fill="#2E7D32"/>
-          <rect x="14" y="0" width="4" height="200" rx="2" fill="#2E7D32"/>
-          <rect x="28" y="0" width="4" height="200" rx="2" fill="#2E7D32"/>
-        </g>
-        <g opacity="0.1">
-          <rect x="160" y="100" width="10" height="60" rx="3" fill="#4CAF50"/>
-          <rect x="180" y="80" width="10" height="80" rx="3" fill="#4CAF50"/>
-          <rect x="200" y="60" width="10" height="100" rx="3" fill="#4CAF50"/>
-          <rect x="220" y="40" width="10" height="120" rx="3" fill="#4CAF50"/>
-        </g>
-        <polygon points="350,20 355,35 370,35 358,44 362,59 350,50 338,59 342,44 330,35 345,35" fill="#4CAF50" opacity="0.1"/>
-      </svg>
-    ),
-    "regulacion": (
-      <svg style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }} viewBox="0 0 380 200" preserveAspectRatio="xMidYMid slice">
-        <g opacity="0.1">
-          <rect x="220" y="80" width="140" height="110" rx="4" fill="#2E7D32"/>
-          <rect x="240" y="60" width="100" height="30" rx="3" fill="#2E7D32"/>
-          <rect x="255" y="100" width="20" height="35" rx="2" fill="#1B5E20"/>
-          <rect x="285" y="100" width="20" height="35" rx="2" fill="#1B5E20"/>
-          <rect x="315" y="100" width="20" height="35" rx="2" fill="#1B5E20"/>
-          <rect x="225" y="60" width="10" height="130" rx="2" fill="#1B5E20"/>
-          <rect x="345" y="60" width="10" height="130" rx="2" fill="#1B5E20"/>
-          <rect x="235" y="55" width="110" height="10" rx="2" fill="#4CAF50"/>
-          <rect x="280" y="70" width="20" height="4" rx="1" fill="#E8F5E9"/>
-          <rect x="287" y="63" width="5" height="15" rx="1" fill="#E8F5E9"/>
-        </g>
-        <g opacity="0.1">
-          <circle cx="60" cy="60" r="35" fill="none" stroke="#2E7D32" strokeWidth="2"/>
-          <circle cx="60" cy="60" r="25" fill="none" stroke="#4CAF50" strokeWidth="1.5"/>
-          <circle cx="60" cy="60" r="8" fill="#4CAF50" opacity="0.3"/>
-          <line x1="60" y1="25" x2="60" y2="15" stroke="#2E7D32" strokeWidth="2" strokeLinecap="round"/>
-          <line x1="60" y1="95" x2="60" y2="105" stroke="#2E7D32" strokeWidth="2" strokeLinecap="round"/>
-          <line x1="25" y1="60" x2="15" y2="60" stroke="#2E7D32" strokeWidth="2" strokeLinecap="round"/>
-          <line x1="95" y1="60" x2="105" y2="60" stroke="#2E7D32" strokeWidth="2" strokeLinecap="round"/>
-        </g>
-        <g opacity="0.08">
-          <line x1="95" y1="60" x2="220" y2="100" stroke="#4CAF50" strokeWidth="1.5" strokeDasharray="5 4"/>
-          <circle cx="157" cy="80" r="5" fill="#4CAF50"/>
-        </g>
-        <g opacity="0.08">
-          <rect x="10" y="130" width="100" height="60" rx="6" fill="#2E7D32"/>
-          <circle cx="60" cy="155" r="15" fill="#4CAF50" opacity="0.3"/>
-        </g>
-      </svg>
-    ),
-    "etapas": (
-      <svg style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }} viewBox="0 0 380 200" preserveAspectRatio="xMidYMid slice">
-        <g opacity="0.13" style={{ transformOrigin: "80px 100px", animation: "spin 20s linear infinite" }}>
-          <circle cx="80" cy="100" r="55" fill="none" stroke="#2E7D32" strokeWidth="2"/>
-          <circle cx="80" cy="100" r="38" fill="#E8F5E9" stroke="#4CAF50" strokeWidth="1.5" opacity="0.5"/>
-          <circle cx="80" cy="100" r="15" fill="#4CAF50" opacity="0.2"/>
-          <rect x="76" y="36" width="8" height="16" rx="3" fill="#2E7D32"/>
-          <rect x="76" y="148" width="8" height="16" rx="3" fill="#2E7D32"/>
-          <rect x="16" y="96" width="16" height="8" rx="3" fill="#2E7D32"/>
-          <rect x="148" y="96" width="16" height="8" rx="3" fill="#2E7D32"/>
-          <rect x="34" y="52" width="11" height="11" rx="2" fill="#2E7D32" style={{ transform: "rotate(45deg)", transformOrigin: "39px 57px" }}/>
-          <rect x="126" y="52" width="11" height="11" rx="2" fill="#2E7D32" style={{ transform: "rotate(45deg)", transformOrigin: "131px 57px" }}/>
-          <rect x="34" y="137" width="11" height="11" rx="2" fill="#2E7D32" style={{ transform: "rotate(45deg)", transformOrigin: "39px 142px" }}/>
-          <rect x="126" y="137" width="11" height="11" rx="2" fill="#2E7D32" style={{ transform: "rotate(45deg)", transformOrigin: "131px 142px" }}/>
-        </g>
-        <g opacity="0.11" style={{ transformOrigin: "200px 60px", animation: "spin 14s linear infinite reverse" }}>
-          <circle cx="200" cy="60" r="35" fill="none" stroke="#4CAF50" strokeWidth="1.5"/>
-          <circle cx="200" cy="60" r="23" fill="#E8F5E9" stroke="#66BB6A" strokeWidth="1" opacity="0.5"/>
-          <circle cx="200" cy="60" r="8" fill="#4CAF50" opacity="0.2"/>
-          <rect x="197" y="18" width="6" height="12" rx="2" fill="#4CAF50"/>
-          <rect x="197" y="90" width="6" height="12" rx="2" fill="#4CAF50"/>
-          <rect x="158" y="57" width="12" height="6" rx="2" fill="#4CAF50"/>
-          <rect x="230" y="57" width="12" height="6" rx="2" fill="#4CAF50"/>
-        </g>
-        <g opacity="0.1">
-          <path d="M280 100 Q280 50 320 50 Q360 50 360 100 Q360 150 320 150 Q285 150 281 120" fill="none" stroke="#2E7D32" strokeWidth="2" strokeDasharray="6 4"/>
-          <polygon points="279 118 289 124 285 110" fill="#2E7D32"/>
-        </g>
-        <circle cx="320" cy="45" r="9" fill="#4CAF50" opacity="0.12"/>
-        <circle cx="365" cy="100" r="9" fill="#4CAF50" opacity="0.12"/>
-        <circle cx="320" cy="155" r="9" fill="#4CAF50" opacity="0.12"/>
-        <circle cx="275" cy="100" r="9" fill="#4CAF50" opacity="0.12"/>
-      </svg>
-    ),
-    "documentacion": (
-      <svg style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }} viewBox="0 0 380 200" preserveAspectRatio="xMidYMid slice">
-        <g opacity="0.1">
-          <rect x="260" y="20" width="70" height="90" rx="6" fill="#2E7D32"/>
-          <rect x="266" y="36" width="58" height="4" rx="2" fill="#E8F5E9"/>
-          <rect x="266" y="48" width="50" height="4" rx="2" fill="#E8F5E9"/>
-          <rect x="266" y="60" width="54" height="4" rx="2" fill="#E8F5E9"/>
-          <rect x="266" y="72" width="44" height="4" rx="2" fill="#E8F5E9"/>
-          <rect x="266" y="84" width="30" height="4" rx="2" fill="#E8F5E9"/>
-          <path d="M260 20 L270 10 L330 10 L330 20" fill="#1B5E20"/>
-        </g>
-        <g opacity="0.08">
-          <rect x="230" y="50" width="70" height="90" rx="6" fill="#2E7D32"/>
-          <path d="M230 50 L240 40 L300 40 L300 50" fill="#1B5E20"/>
-        </g>
-        <g opacity="0.06">
-          <rect x="200" y="80" width="70" height="90" rx="6" fill="#2E7D32"/>
-          <path d="M200 80 L210 70 L270 70 L270 80" fill="#1B5E20"/>
-        </g>
-        <g opacity="0.12">
-          <circle cx="60" cy="60" r="30" fill="none" stroke="#2E7D32" strokeWidth="2"/>
-          <path d="M46 60 L56 70 L74 50" fill="none" stroke="#4CAF50" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
-        </g>
-        <g opacity="0.1">
-          <rect x="10" y="100" width="120" height="80" rx="8" fill="#2E7D32"/>
-          <rect x="20" y="114" width="100" height="6" rx="3" fill="#E8F5E9"/>
-          <rect x="20" y="128" width="80" height="6" rx="3" fill="#E8F5E9"/>
-          <rect x="20" y="142" width="90" height="6" rx="3" fill="#E8F5E9"/>
-          <rect x="20" y="156" width="60" height="6" rx="3" fill="#E8F5E9"/>
-        </g>
-      </svg>
-    ),
-    "herramientas": (
-      <svg style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }} viewBox="0 0 380 200" preserveAspectRatio="xMidYMid slice">
-        <g opacity="0.1">
-          <rect x="240" y="20" width="120" height="80" rx="6" fill="#2E7D32"/>
-          <rect x="250" y="35" width="30" height="4" rx="2" fill="#E8F5E9"/>
-          <rect x="250" y="47" width="25" height="4" rx="2" fill="#E8F5E9"/>
-          <rect x="290" y="35" width="30" height="4" rx="2" fill="#E8F5E9"/>
-          <rect x="290" y="47" width="22" height="4" rx="2" fill="#E8F5E9"/>
-          <line x1="280" y1="20" x2="280" y2="100" stroke="#1B5E20" strokeWidth="1"/>
-          <rect x="250" y="62" width="20" height="4" rx="2" fill="#E8F5E9"/>
-          <rect x="290" y="62" width="28" height="4" rx="2" fill="#E8F5E9"/>
-        </g>
-        <g opacity="0.12">
-          <rect x="60" y="50" width="18" height="60" rx="4" fill="#2E7D32"/>
-          <rect x="86" y="30" width="18" height="80" rx="4" fill="#2E7D32"/>
-          <rect x="112" y="10" width="18" height="100" rx="4" fill="#2E7D32"/>
-        </g>
-        <g opacity="0.1">
-          <circle cx="50" cy="150" r="30" fill="none" stroke="#2E7D32" strokeWidth="1.5" strokeDasharray="4 3"/>
-          <circle cx="50" cy="150" r="20" fill="none" stroke="#4CAF50" strokeWidth="1"/>
-          <circle cx="50" cy="150" r="8" fill="#4CAF50" opacity="0.25"/>
-          <line x1="50" y1="120" x2="50" y2="112" stroke="#2E7D32" strokeWidth="2" strokeLinecap="round"/>
-          <line x1="50" y1="180" x2="50" y2="188" stroke="#2E7D32" strokeWidth="2" strokeLinecap="round"/>
-          <line x1="20" y1="150" x2="12" y2="150" stroke="#2E7D32" strokeWidth="2" strokeLinecap="round"/>
-          <line x1="80" y1="150" x2="88" y2="150" stroke="#2E7D32" strokeWidth="2" strokeLinecap="round"/>
-        </g>
-        <g opacity="0.08">
-          <circle cx="200" cy="120" r="40" fill="none" stroke="#4CAF50" strokeWidth="8"/>
-          <line x1="228" y1="148" x2="250" y2="170" stroke="#4CAF50" strokeWidth="10" strokeLinecap="round"/>
-        </g>
-      </svg>
-    ),
-    "rol-trabajadores": (
-      <svg style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }} viewBox="0 0 380 200" preserveAspectRatio="xMidYMid slice">
-        <g opacity="0.1">
-          <ellipse cx="300" cy="80" rx="55" ry="35" fill="none" stroke="#2E7D32" strokeWidth="2"/>
-          <ellipse cx="300" cy="80" rx="42" ry="27" fill="none" stroke="#4CAF50" strokeWidth="1" opacity="0.5"/>
-          <circle cx="300" cy="80" r="16" fill="#4CAF50" opacity="0.2"/>
-          <circle cx="300" cy="80" r="8" fill="#2E7D32" opacity="0.3"/>
-          <circle cx="292" cy="73" r="4" fill="white" opacity="0.5"/>
-          <line x1="268" y1="54" x2="266" y2="44" stroke="#2E7D32" strokeWidth="1.5" strokeLinecap="round"/>
-          <line x1="284" y1="48" x2="283" y2="37" stroke="#2E7D32" strokeWidth="1.5" strokeLinecap="round"/>
-          <line x1="300" y1="46" x2="300" y2="35" stroke="#2E7D32" strokeWidth="1.5" strokeLinecap="round"/>
-          <line x1="316" y1="48" x2="317" y2="37" stroke="#2E7D32" strokeWidth="1.5" strokeLinecap="round"/>
-          <line x1="332" y1="54" x2="334" y2="44" stroke="#2E7D32" strokeWidth="1.5" strokeLinecap="round"/>
-        </g>
-        <g opacity="0.13">
-          <line x1="60" y1="60" x2="130" y2="100" stroke="#4CAF50" strokeWidth="1"/>
-          <line x1="130" y1="100" x2="80" y2="160" stroke="#4CAF50" strokeWidth="1"/>
-          <line x1="130" y1="100" x2="200" y2="70" stroke="#4CAF50" strokeWidth="1"/>
-          <line x1="60" y1="60" x2="30" y2="140" stroke="#4CAF50" strokeWidth="0.8"/>
-          <circle cx="60" cy="44" r="10" fill="#2E7D32"/>
-          <path d="M44 64 Q44 47 60 51 Q76 47 76 64 L76 82 L44 82 Z" fill="#2E7D32"/>
-          <circle cx="130" cy="82" r="13" fill="#1B5E20"/>
-          <path d="M110 106 Q110 85 130 90 Q150 85 150 106 L150 128 L110 128 Z" fill="#1B5E20"/>
-          <path d="M123 92 L137 92 L137 104 Q137 111 130 114 Q123 111 123 104 Z" fill="#E8F5E9" opacity="0.5"/>
-          <circle cx="80" cy="150" r="9" fill="#4CAF50" opacity="0.7"/>
-          <path d="M66 168 Q66 153 80 156 Q94 153 94 168 L94 180 L66 180 Z" fill="#4CAF50" opacity="0.7"/>
-          <circle cx="200" cy="56" r="9" fill="#4CAF50" opacity="0.7"/>
-          <path d="M186 74 Q186 59 200 62 Q214 59 214 74 L214 88 L186 88 Z" fill="#4CAF50" opacity="0.7"/>
-        </g>
-        <g opacity="0.09">
-          <path d="M5 120 L5 148 L18 148 L35 160 L35 108 L18 120 Z" fill="#2E7D32"/>
-          <path d="M40 126 Q52 134 40 142" fill="none" stroke="#2E7D32" strokeWidth="2" strokeLinecap="round"/>
-          <path d="M44 120 Q62 134 44 148" fill="none" stroke="#2E7D32" strokeWidth="2" strokeLinecap="round"/>
-        </g>
-      </svg>
-    ),
-    "cierre": (
-      <svg style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }} viewBox="0 0 380 200" preserveAspectRatio="xMidYMid slice">
-        <g opacity="0.12">
-          <circle cx="200" cy="100" r="80" fill="none" stroke="#4CAF50" strokeWidth="1.5" strokeDasharray="6 4"/>
-          <circle cx="200" cy="100" r="60" fill="none" stroke="#4CAF50" strokeWidth="1" strokeDasharray="4 5" opacity="0.7"/>
-          <circle cx="200" cy="100" r="40" fill="#4CAF50" opacity="0.08"/>
-        </g>
-        <g opacity="0.14">
-          <path d="M160 100 L186 126 L240 72" stroke="#2E7D32" strokeWidth="8" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
-        </g>
-        <g opacity="0.1">
-          <polygon points="50,20 58,42 82,42 63,56 70,78 50,64 30,78 37,56 18,42 42,42" fill="#4CAF50"/>
-          <polygon points="330,140 336,158 355,158 340,169 345,187 330,176 315,187 320,169 305,158 324,158" fill="#4CAF50"/>
-          <polygon points="340,20 344,32 357,32 347,40 350,52 340,44 330,52 333,40 323,32 336,32" fill="#66BB6A"/>
-        </g>
-        <g opacity="0.09">
-          <path d="M50 100 Q50 40 110 40 Q140 40 155 70" fill="none" stroke="#4CAF50" strokeWidth="1.5" strokeDasharray="5 4"/>
-          <path d="M350 100 Q350 160 290 160 Q260 160 245 130" fill="none" stroke="#4CAF50" strokeWidth="1.5" strokeDasharray="5 4"/>
-        </g>
-        <circle cx="60" cy="160" r="20" fill="none" stroke="#4CAF50" strokeWidth="0.8" opacity="0.1"/>
-        <circle cx="320" cy="40" r="15" fill="none" stroke="#4CAF50" strokeWidth="0.8" opacity="0.1"/>
-      </svg>
-    ),
-  };
+const BG_ILLUSTRATIONS: Record<string, string> = {
+  "que-es": `
+    <g opacity="0.07">
+      <rect x="60" y="120" width="110" height="130" rx="6" fill="#2E7D32"/>
+      <rect x="80" y="96" width="70" height="32" rx="4" fill="#2E7D32"/>
+      <rect x="95" y="158" width="30" height="50" rx="3" fill="#1B5E20"/>
+      <rect x="138" y="158" width="22" height="40" rx="3" fill="#1B5E20"/>
+      <rect x="103" y="140" width="18" height="5" rx="1" fill="#E8F5E9"/>
+      <rect x="109" y="132" width="5" height="18" rx="1" fill="#E8F5E9"/>
+      <rect x="100" y="104" width="18" height="6" rx="1" fill="#E8F5E9"/>
+      <rect x="106" y="98" width="6" height="16" rx="1" fill="#E8F5E9"/>
+    </g>
+    <g opacity="0.06">
+      <circle cx="290" cy="180" r="14" fill="#2E7D32"/>
+      <path d="M272 210 Q272 188 290 193 Q308 188 308 210 L308 235 L272 235 Z" fill="#2E7D32"/>
+      <circle cx="330" cy="175" r="11" fill="#4CAF50"/>
+      <path d="M315 200 Q315 182 330 186 Q345 182 345 200 L345 220 L315 220 Z" fill="#4CAF50"/>
+      <circle cx="250" cy="185" r="11" fill="#4CAF50"/>
+      <path d="M235 210 Q235 192 250 196 Q265 192 265 210 L265 230 L235 230 Z" fill="#4CAF50"/>
+    </g>
+    <g opacity="0.05">
+      <path d="M-20 300 L60 330 L60 430 Q60 500 -20 540 Q-100 500 -100 430 L-100 330 Z" fill="#4CAF50"/>
+    </g>
+    <g opacity="0.06">
+      <path d="M310 50 L370 70 L370 140 Q370 185 310 210 Q250 185 250 140 L250 70 Z" fill="none" stroke="#4CAF50" strokeWidth="2"/>
+      <text x="310" y="148" textAnchor="middle" fill="#2E7D32" fontSize="36" fontWeight="800" fontFamily="system-ui">S</text>
+    </g>
+    <line x1="0" y1="80" x2="380" y2="80" stroke="#4CAF50" strokeWidth="0.5" opacity="0.05"/>
+    <line x1="0" y1="300" x2="380" y2="300" stroke="#4CAF50" strokeWidth="0.5" opacity="0.05"/>
+    <circle cx="360" cy="400" r="50" fill="none" stroke="#4CAF50" strokeWidth="1" opacity="0.05" strokeDasharray="6 4"/>
+    <circle cx="20" cy="500" r="35" fill="none" stroke="#4CAF50" strokeWidth="0.8" opacity="0.05" strokeDasharray="4 5"/>
+  `,
+  "conceptos": `
+    <g opacity="0.07">
+      <rect x="20" y="80" width="4" height="120" rx="2" fill="#2E7D32"/>
+      <rect x=-10 y="100" width="80" height="3" rx="1.5" fill="#2E7D32"/>
+      <line x1="-10" y1="103" x2="-10" y2="140" stroke="#2E7D32" strokeWidth="2"/>
+      <path d="M-25 140 Q-10 152 5 140" fill="none" stroke="#2E7D32" strokeWidth="2"/>
+      <line x1="70" y1="103" x2="70" y2="148" stroke="#2E7D32" strokeWidth="2"/>
+      <path d="M55 148 Q70 160 85 148" fill="none" stroke="#2E7D32" strokeWidth="2"/>
+      <path d="M12 172 L32 172 L37 185 L7 185 Z" fill="#2E7D32"/>
+      <rect x="2" y="183" width="42" height="6" rx="2" fill="#2E7D32"/>
+    </g>
+    <g opacity="0.06">
+      <rect x="280" y="300" width="80" height="100" rx="12" fill="#1B5E20"/>
+      <path d="M290 300 Q290 275 320 275 Q350 275 350 300" fill="none" stroke="#2E7D32" strokeWidth="10" strokeLinecap="round"/>
+      <circle cx="320" cy="345" r="14" fill="#4CAF50" opacity="0.4"/>
+      <rect x="314" y="345" width="12" height="18" rx="5" fill="#E8F5E9" opacity="0.6"/>
+    </g>
+    <g opacity="0.05">
+      <rect x="260" y="100" width="100" height="130" rx="6" fill="#2E7D32"/>
+      <rect x="265" y="115" width="90" height="5" rx="2" fill="#E8F5E9"/>
+      <rect x="265" y="128" width="75" height="5" rx="2" fill="#E8F5E9"/>
+      <rect x="265" y="141" width="82" height="5" rx="2" fill="#E8F5E9"/>
+      <rect x="265" y="154" width="60" height="5" rx="2" fill="#E8F5E9"/>
+      <path d="M260 100 L274 84 L360 84 L360 100" fill="#1B5E20"/>
+    </g>
+    <circle cx="190" cy="480" r="55" fill="none" stroke="#4CAF50" strokeWidth="1" opacity="0.06" strokeDasharray="6 4"/>
+    <circle cx="190" cy="480" r="35" fill="none" stroke="#4CAF50" strokeWidth="0.7" opacity="0.05" strokeDasharray="4 5"/>
+    <polygon points="50,480 58,504 83,504 63,519 70,543 50,528 30,543 37,519 17,504 42,504" fill="#4CAF50" opacity="0.05"/>
+  `,
+  "sanciones": `
+    <g opacity="0.06">
+      <rect x="20" y="100" width="4" height="150" rx="2" fill="#2E7D32"/>
+      <rect x="-15" y="125" width="85" height="4" rx="2" fill="#2E7D32"/>
+      <line x1="-15" y1="129" x2="-15" y2="172" stroke="#2E7D32" strokeWidth="2"/>
+      <path d="M-32 172 Q-15 186 2 172" fill="none" stroke="#2E7D32" strokeWidth="2"/>
+      <line x1="70" y1="129" x2="70" y2="180" stroke="#2E7D32" strokeWidth="2"/>
+      <path d="M53 180 Q70 194 87 180" fill="none" stroke="#2E7D32" strokeWidth="2"/>
+      <path d="M7 220 L27 220 L33 235 L1 235 Z" fill="#2E7D32"/>
+      <rect x="-5" y="233" width="45" height="6" rx="2" fill="#2E7D32"/>
+    </g>
+    <g opacity="0.06">
+      <rect x="270" y="60" width="80" height="100" rx="12" fill="#1B5E20"/>
+      <path d="M282 60 Q282 34 310 34 Q338 34 338 60" fill="none" stroke="#2E7D32" strokeWidth="10" strokeLinecap="round"/>
+      <circle cx="310" cy="108" r="14" fill="#4CAF50" opacity="0.4"/>
+      <rect x="304" y="108" width="12" height="18" rx="5" fill="#E8F5E9" opacity="0.6"/>
+    </g>
+    <g opacity="0.04">
+      <rect x="0" y="0" width="5" height="700" rx="2" fill="#2E7D32"/>
+      <rect x="18" y="0" width="5" height="700" rx="2" fill="#2E7D32"/>
+      <rect x="36" y="0" width="5" height="700" rx="2" fill="#2E7D32"/>
+    </g>
+    <g opacity="0.07">
+      <rect x="200" y="350" width="14" height="90" rx="4" fill="#4CAF50"/>
+      <rect x="222" y="310" width="14" height="130" rx="4" fill="#4CAF50"/>
+      <rect x="244" y="270" width="14" height="170" rx="4" fill="#4CAF50"/>
+      <rect x="266" y="230" width="14" height="210" rx="4" fill="#4CAF50"/>
+    </g>
+    <polygon points="340,380 346,400 368,400 351,413 357,434 340,421 323,434 329,413 312,400 334,400" fill="#4CAF50" opacity="0.06"/>
+    <polygon points="60,550 65,566 82,566 68,576 73,592 60,582 47,592 52,576 38,566 55,566" fill="#4CAF50" opacity="0.07"/>
+  `,
+  "regulacion": `
+    <g opacity="0.07">
+      <rect x="120" y="200" width="160" height="200" rx="5" fill="#2E7D32"/>
+      <rect x="145" y="170" width="110" height="40" rx="4" fill="#2E7D32"/>
+      <rect x="160" y="240" width="25" height="45" rx="3" fill="#1B5E20"/>
+      <rect x="197" y="240" width="25" height="45" rx="3" fill="#1B5E20"/>
+      <rect x="234" y="240" width="25" height="45" rx="3" fill="#1B5E20"/>
+      <rect x="125" y="170" width="12" height="230" rx="3" fill="#1B5E20"/>
+      <rect x="263" y="170" width="12" height="230" rx="3" fill="#1B5E20"/>
+      <rect x="137" y="163" width="126" height="12" rx="3" fill="#4CAF50"/>
+      <rect x="188" y="178" width="24" height="5" rx="1" fill="#E8F5E9"/>
+      <rect x="197" y="168" width="6" height="19" rx="1" fill="#E8F5E9"/>
+    </g>
+    <g opacity="0.06">
+      <circle cx="50" cy="120" r="45" fill="none" stroke="#2E7D32" strokeWidth="2.5"/>
+      <circle cx="50" cy="120" r="32" fill="none" stroke="#4CAF50" strokeWidth="1.5"/>
+      <circle cx="50" cy="120" r="12" fill="#4CAF50" opacity="0.25"/>
+      <line x1="50" y1="75" x2="50" y2="62" stroke="#2E7D32" strokeWidth="2.5" strokeLinecap="round"/>
+      <line x1="50" y1="165" x2="50" y2="178" stroke="#2E7D32" strokeWidth="2.5" strokeLinecap="round"/>
+      <line x1="5" y1="120" x2="-8" y2="120" stroke="#2E7D32" strokeWidth="2.5" strokeLinecap="round"/>
+      <line x1="95" y1="120" x2="108" y2="120" stroke="#2E7D32" strokeWidth="2.5" strokeLinecap="round"/>
+    </g>
+    <g opacity="0.05">
+      <circle cx="320" cy="480" r="55" fill="none" stroke="#2E7D32" strokeWidth="2"/>
+      <circle cx="320" cy="480" r="38" fill="none" stroke="#4CAF50" strokeWidth="1.2"/>
+      <circle cx="320" cy="480" r="14" fill="#4CAF50" opacity="0.2"/>
+    </g>
+    <line x1="108" y1="120" x2="120" y2="200" stroke="#4CAF50" strokeWidth="1.5" opacity="0.06" strokeDasharray="6 4"/>
+    <line x1="290" y1="300" x2="320" y2="480" stroke="#4CAF50" strokeWidth="1" opacity="0.05" strokeDasharray="4 5"/>
+  `,
+  "etapas": `
+    <g opacity="0.07" style="transform-origin:80px 250px;animation:spin 25s linear infinite">
+      <circle cx="80" cy="250" r="70" fill="none" stroke="#2E7D32" strokeWidth="2"/>
+      <circle cx="80" cy="250" r="50" fill="none" stroke="#4CAF50" strokeWidth="1.5" opacity="0.6"/>
+      <circle cx="80" cy="250" r="20" fill="#4CAF50" opacity="0.15"/>
+      <rect x="76" y="170" width="8" height="18" rx="3" fill="#2E7D32"/>
+      <rect x="76" y="312" width="8" height="18" rx="3" fill="#2E7D32"/>
+      <rect x="0" y="246" width="18" height="8" rx="3" fill="#2E7D32"/>
+      <rect x="142" y="246" width="18" height="8" rx="3" fill="#2E7D32"/>
+      <rect x="22" y="196" width="12" height="12" rx="2" fill="#2E7D32" style={{transform:"rotate(45deg)",transformOrigin:"28px 202px"}}/>
+      <rect x="130" y="196" width="12" height="12" rx="2" fill="#2E7D32" style={{transform:"rotate(45deg)",transformOrigin:"136px 202px"}}/>
+      <rect x="22" y="290" width="12" height="12" rx="2" fill="#2E7D32" style={{transform:"rotate(45deg)",transformOrigin:"28px 296px"}}/>
+      <rect x="130" y="290" width="12" height="12" rx="2" fill="#2E7D32" style={{transform:"rotate(45deg)",transformOrigin:"136px 296px"}}/>
+    </g>
+    <g opacity="0.06" style="transform-origin:290px 150px;animation:spin 18s linear infinite reverse">
+      <circle cx="290" cy="150" r="50" fill="none" stroke="#4CAF50" strokeWidth="1.5"/>
+      <circle cx="290" cy="150" r="34" fill="none" stroke="#66BB6A" strokeWidth="1" opacity="0.6"/>
+      <circle cx="290" cy="150" r="12" fill="#4CAF50" opacity="0.15"/>
+      <rect x="286" y="92" width="8" height="14" rx="3" fill="#4CAF50"/>
+      <rect x="286" y="194" width="8" height="14" rx="3" fill="#4CAF50"/>
+      <rect x="232" y="146" width="14" height="8" rx="3" fill="#4CAF50"/>
+      <rect x="334" y="146" width="14" height="8" rx="3" fill="#4CAF50"/>
+    </g>
+    <g opacity="0.06">
+      <path d="M240 430 Q240 360 290 360 Q340 360 340 430 Q340 500 290 500 Q248 500 242 470" fill="none" stroke="#2E7D32" strokeWidth="2.5" strokeDasharray="7 5"/>
+      <polygon points="240 468 252 476 248 460" fill="#2E7D32"/>
+    </g>
+    <circle cx="290" cy="355" r="12" fill="#4CAF50" opacity="0.08"/>
+    <circle cx="345" cy="430" r="12" fill="#4CAF50" opacity="0.08"/>
+    <circle cx="290" cy="505" r="12" fill="#4CAF50" opacity="0.08"/>
+    <circle cx="235" cy="430" r="12" fill="#4CAF50" opacity="0.08"/>
+  `,
+  "documentacion": `
+    <g opacity="0.07">
+      <rect x="210" y="60" width="90" height="115" rx="7" fill="#2E7D32"/>
+      <rect x="218" y="80" width="74" height="6" rx="2" fill="#E8F5E9"/>
+      <rect x="218" y="96" width="60" height="6" rx="2" fill="#E8F5E9"/>
+      <rect x="218" y="112" width="68" height="6" rx="2" fill="#E8F5E9"/>
+      <rect x="218" y="128" width="50" height="6" rx="2" fill="#E8F5E9"/>
+      <rect x="218" y="144" width="40" height="6" rx="2" fill="#E8F5E9"/>
+      <path d="M210 60 L224 44 L300 44 L300 60" fill="#1B5E20"/>
+    </g>
+    <g opacity="0.055">
+      <rect x="178" y="90" width="90" height="115" rx="7" fill="#2E7D32"/>
+      <path d="M178 90 L192 74 L268 74 L268 90" fill="#1B5E20"/>
+    </g>
+    <g opacity="0.04">
+      <rect x="146" y="120" width="90" height="115" rx="7" fill="#2E7D32"/>
+      <path d="M146 120 L160 104 L236 104 L236 120" fill="#1B5E20"/>
+    </g>
+    <g opacity="0.07">
+      <circle cx="55" cy="400" r="42" fill="none" stroke="#2E7D32" strokeWidth="2.5"/>
+      <path d="M38 400 L50 414 L73 388" fill="none" stroke="#4CAF50" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
+    </g>
+    <g opacity="0.06">
+      <rect x="220" y="380" width="145" height="100" rx="10" fill="#2E7D32"/>
+      <rect x="232" y="398" width="121" height="7" rx="3" fill="#E8F5E9"/>
+      <rect x="232" y="415" width="95" height="7" rx="3" fill="#E8F5E9"/>
+      <rect x="232" y="432" width="110" height="7" rx="3" fill="#E8F5E9"/>
+      <rect x="232" y="449" width="75" height="7" rx="3" fill="#E8F5E9"/>
+    </g>
+    <circle cx="350" cy="250" r="40" fill="none" stroke="#4CAF50" strokeWidth="0.8" opacity="0.05" strokeDasharray="5 4"/>
+    <circle cx="30" cy="200" r="28" fill="none" stroke="#4CAF50" strokeWidth="0.8" opacity="0.05" strokeDasharray="4 5"/>
+  `,
+  "herramientas": `
+    <g opacity="0.07">
+      <rect x="200" y="80" width="155" height="105" rx="7" fill="#2E7D32"/>
+      <rect x="212" y="98" width="40" height="5" rx="2" fill="#E8F5E9"/>
+      <rect x="212" y="112" width="32" height="5" rx="2" fill="#E8F5E9"/>
+      <rect x="262" y="98" width="40" height="5" rx="2" fill="#E8F5E9"/>
+      <rect x="262" y="112" width="30" height="5" rx="2" fill="#E8F5E9"/>
+      <line x1="252" y1="80" x2="252" y2="185" stroke="#1B5E20" strokeWidth="1.5"/>
+      <rect x="212" y="126" width="28" height="5" rx="2" fill="#E8F5E9"/>
+      <rect x="262" y="126" width="36" height="5" rx="2" fill="#E8F5E9"/>
+    </g>
+    <g opacity="0.08">
+      <rect x="30" y="280" width="22" height="90" rx="4" fill="#4CAF50"/>
+      <rect x="60" y="240" width="22" height="130" rx="4" fill="#4CAF50"/>
+      <rect x="90" y="200" width="22" height="170" rx="4" fill="#4CAF50"/>
+      <rect x="120" y="160" width="22" height="210" rx="4" fill="#4CAF50"/>
+    </g>
+    <g opacity="0.06">
+      <circle cx="60" cy="130" r="42" fill="none" stroke="#2E7D32" strokeWidth="2"/>
+      <circle cx="60" cy="130" r="28" fill="none" stroke="#4CAF50" strokeWidth="1.5"/>
+      <circle cx="60" cy="130" r="10" fill="#4CAF50" opacity="0.2"/>
+      <line x1="60" y1="88" x2="60" y2="76" stroke="#2E7D32" strokeWidth="2.5" strokeLinecap="round"/>
+      <line x1="60" y1="172" x2="60" y2="184" stroke="#2E7D32" strokeWidth="2.5" strokeLinecap="round"/>
+      <line x1="18" y1="130" x2="6" y2="130" stroke="#2E7D32" strokeWidth="2.5" strokeLinecap="round"/>
+      <line x1="102" y1="130" x2="114" y2="130" stroke="#2E7D32" strokeWidth="2.5" strokeLinecap="round"/>
+    </g>
+    <g opacity="0.06">
+      <circle cx="260" cy="440" r="55" fill="none" stroke="#4CAF50" strokeWidth="10"/>
+      <line x1="296" y1="476" x2="322" y2="502" stroke="#4CAF50" strokeWidth="14" strokeLinecap="round"/>
+    </g>
+    <circle cx="350" cy="550" r="55" fill="none" stroke="#4CAF50" strokeWidth="1" opacity="0.05" strokeDasharray="6 4"/>
+  `,
+  "rol-trabajadores": `
+    <g opacity="0.08">
+      <ellipse cx="300" cy="130" rx="70" ry="44" fill="none" stroke="#2E7D32" strokeWidth="2"/>
+      <ellipse cx="300" cy="130" rx="54" ry="34" fill="none" stroke="#4CAF50" strokeWidth="1.2" opacity="0.6"/>
+      <circle cx="300" cy="130" r="20" fill="#4CAF50" opacity="0.18"/>
+      <circle cx="300" cy="130" r="10" fill="#2E7D32" opacity="0.25"/>
+      <circle cx="292" cy="122" r="5" fill="white" opacity="0.5"/>
+      <line x1="264" y1="96" x2="261" y2="83" stroke="#2E7D32" strokeWidth="1.8" strokeLinecap="round"/>
+      <line x1="282" y1="88" x2="280" y2="75" stroke="#2E7D32" strokeWidth="1.8" strokeLinecap="round"/>
+      <line x1="300" y1="86" x2="300" y2="73" stroke="#2E7D32" strokeWidth="1.8" strokeLinecap="round"/>
+      <line x1="318" y1="88" x2="320" y2="75" stroke="#2E7D32" strokeWidth="1.8" strokeLinecap="round"/>
+      <line x1="336" y1="96" x2="339" y2="83" stroke="#2E7D32" strokeWidth="1.8" strokeLinecap="round"/>
+    </g>
+    <g opacity="0.09">
+      <line x1="60" y1="200" x2="150" y2="310" stroke="#4CAF50" strokeWidth="1.2"/>
+      <line x1="150" y1="310" x2="80" y2="440" stroke="#4CAF50" strokeWidth="1.2"/>
+      <line x1="150" y1="310" x2="240" y2="250" stroke="#4CAF50" strokeWidth="1.2"/>
+      <line x1="60" y1="200" x2="20" y2="370" stroke="#4CAF50" strokeWidth="1"/>
+      <line x1="240" y1="250" x2="310" y2="360" stroke="#4CAF50" strokeWidth="1" strokeDasharray="4 3"/>
+      <circle cx="60" cy="180" r="14" fill="#2E7D32"/>
+      <path d="M40 210 Q40 188 60 193 Q80 188 80 210 L80 238 L40 238 Z" fill="#2E7D32"/>
+      <circle cx="150" cy="286" r="18" fill="#1B5E20"/>
+      <path d="M126 322 Q126 296 150 302 Q174 296 174 322 L174 352 L126 352 Z" fill="#1B5E20"/>
+      <path d="M142 298 L158 298 L158 314 Q158 322 150 326 Q142 322 142 314 Z" fill="#E8F5E9" opacity="0.45"/>
+      <circle cx="80" cy="430" r="13" fill="#4CAF50" opacity="0.7"/>
+      <path d="M62 454 Q62 434 80 438 Q98 434 98 454 L98 472 L62 472 Z" fill="#4CAF50" opacity="0.7"/>
+      <circle cx="240" cy="236" r="13" fill="#4CAF50" opacity="0.7"/>
+      <path d="M222 260 Q222 240 240 244 Q258 240 258 260 L258 278 L222 278 Z" fill="#4CAF50" opacity="0.7"/>
+    </g>
+    <g opacity="0.06">
+      <path d="M-10 380 L-10 418 L8 418 L30 432 L30 366 L8 380 Z" fill="#2E7D32"/>
+      <path d="M36 388 Q52 400 36 412" fill="none" stroke="#2E7D32" strokeWidth="2.5" strokeLinecap="round"/>
+      <path d="M42 380 Q64 400 42 420" fill="none" stroke="#2E7D32" strokeWidth="2.5" strokeLinecap="round"/>
+    </g>
+  `,
+  "cierre": `
+    <g opacity="0.08">
+      <circle cx="190" cy="300" r="110" fill="none" stroke="#4CAF50" strokeWidth="1.5" strokeDasharray="7 5"/>
+      <circle cx="190" cy="300" r="80" fill="none" stroke="#4CAF50" strokeWidth="1" strokeDasharray="5 6" opacity="0.7"/>
+      <circle cx="190" cy="300" r="50" fill="#4CAF50" opacity="0.07"/>
+    </g>
+    <g opacity="0.1">
+      <path d="M148 300 L178 336 L232 260" stroke="#2E7D32" strokeWidth="10" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+    </g>
+    <g opacity="0.08">
+      <polygon points="50,80 60,110 92,110 67,129 76,160 50,141 24,160 33,129 8,110 40,110" fill="#4CAF50"/>
+      <polygon points="320,420 328,445 355,445 334,461 341,486 320,470 299,486 306,461 285,445 312,445" fill="#4CAF50"/>
+      <polygon points="330,80 337,102 360,102 341,116 348,138 330,124 312,138 319,116 300,102 323,102" fill="#66BB6A"/>
+      <polygon points="40,450 46,468 65,468 50,479 55,497 40,486 25,497 30,479 15,468 34,468" fill="#4CAF50"/>
+    </g>
+    <g opacity="0.06">
+      <path d="M30 200 Q30 120 100 120 Q140 120 160 155" fill="none" stroke="#4CAF50" strokeWidth="2" strokeDasharray="6 5"/>
+      <path d="M350 400 Q350 480 280 480 Q240 480 220 445" fill="none" stroke="#4CAF50" strokeWidth="2" strokeDasharray="6 5"/>
+    </g>
+    <g opacity="0.07">
+      <path d="M155 100 L175 100 L175 120 Q175 132 165 138 Q155 132 155 120 Z" fill="#2E7D32"/>
+      <rect x="145" y="138" width="40" height="6" rx="2" fill="#2E7D32"/>
+      <rect x="158" y="144" width="14" height="30" rx="3" fill="#2E7D32"/>
+    </g>
+    <circle cx="55" cy="580" r="45" fill="none" stroke="#4CAF50" strokeWidth="0.8" opacity="0.06" strokeDasharray="5 4"/>
+    <circle cx="330" cy="160" r="30" fill="none" stroke="#4CAF50" strokeWidth="0.8" opacity="0.06" strokeDasharray="4 5"/>
+  `,
+};
 
-  return backgrounds[lessonId] || backgrounds["que-es"];
+function FullPageBackground({ lessonId }: { lessonId: string }) {
+  const svgContent = BG_ILLUSTRATIONS[lessonId] || BG_ILLUSTRATIONS["que-es"];
+  return (
+    <div style={{ position: "fixed", inset: 0, zIndex: 0, pointerEvents: "none", overflow: "hidden" }}>
+      <svg
+        style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}
+        viewBox="0 0 380 700"
+        preserveAspectRatio="xMidYMid slice"
+        dangerouslySetInnerHTML={{ __html: svgContent }}
+      />
+    </div>
+  );
 }
 
 function LessonPage() {
@@ -376,16 +383,18 @@ function LessonPage() {
   return (
     <>
       <style>{`
-        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        @keyframes floatY { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+        @keyframes spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+        @keyframes floatY { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
         .shield-float { animation: floatY 3s ease-in-out infinite; }
-        .lesson-card-p { transition: transform 0.2s; }
-        .lesson-card-p:hover { transform: translateX(3px); }
+        .lesson-card:hover { transform: translateX(3px); transition: transform 0.2s; }
       `}</style>
-      <main style={{ minHeight: "100vh", background: "linear-gradient(160deg,#F1F8E9 0%,#FAFFF6 60%,#F9FBF9 100%)" }}>
+
+      <FullPageBackground lessonId={lesson.id}/>
+
+      <main style={{ minHeight: "100vh", background: "linear-gradient(160deg,rgba(241,248,233,0.92) 0%,rgba(250,255,246,0.9) 60%,rgba(249,251,249,0.92) 100%)", position: "relative", zIndex: 1 }}>
 
         {/* Header */}
-        <header style={{ background: "rgba(255,255,255,0.88)", backdropFilter: "blur(14px)", borderBottom: "1px solid rgba(76,175,80,0.15)", position: "sticky", top: 0, zIndex: 10 }}>
+        <header style={{ background: "rgba(255,255,255,0.82)", backdropFilter: "blur(16px)", borderBottom: "1px solid rgba(76,175,80,0.15)", position: "sticky", top: 0, zIndex: 10 }}>
           <div style={{ maxWidth: 680, margin: "0 auto", padding: "12px 20px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
             <Link to="/" style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none" }}>
               <div style={{ width: 34, height: 34, borderRadius: 10, background: "linear-gradient(135deg,#2E7D32,#1B5E20)", display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -404,9 +413,10 @@ function LessonPage() {
 
         <div style={{ maxWidth: 680, margin: "0 auto", padding: "0 0 120px" }}>
 
-          {/* Hero Card con background ilustrado */}
-          <div style={{ margin: "18px 16px 0", borderRadius: 28, background: "linear-gradient(135deg,#2E7D32 0%,#1B5E20 100%)", padding: "26px 22px 22px", position: "relative", overflow: "hidden", minHeight: 160 }}>
-            <LessonBackground lessonId={lesson.id}/>
+          {/* Hero card */}
+          <div style={{ margin: "18px 16px 0", borderRadius: 28, background: "linear-gradient(135deg,rgba(46,125,50,0.95) 0%,rgba(27,94,32,0.97) 100%)", padding: "26px 22px 22px", position: "relative", overflow: "hidden", minHeight: 150, backdropFilter: "blur(4px)" }}>
+            <div style={{ position: "absolute", top: -25, right: -25, width: 110, height: 110, borderRadius: "50%", background: "rgba(255,255,255,0.06)" }}/>
+            <div style={{ position: "absolute", bottom: -18, left: -18, width: 75, height: 75, borderRadius: "50%", background: "rgba(255,255,255,0.04)" }}/>
             <div style={{ position: "relative", zIndex: 1 }}>
               <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between" }}>
                 <div style={{ flex: 1 }}>
@@ -431,26 +441,26 @@ function LessonPage() {
             </div>
           </div>
 
-          {/* Escudo guía con mensaje */}
+          {/* Escudo guía */}
           {shieldVisible && (
             <div style={{ margin: "14px 16px 0", display: "flex", alignItems: "flex-end", gap: 10 }}>
               <div className="shield-float" style={{ flexShrink: 0 }}>
                 <ShieldCharacter size={52}/>
               </div>
-              <div style={{ flex: 1, background: "white", borderRadius: "18px 18px 18px 4px", padding: "12px 36px 12px 14px", boxShadow: "0 2px 12px rgba(76,175,80,0.12)", border: "1px solid rgba(76,175,80,0.15)", position: "relative" }}>
+              <div style={{ flex: 1, background: "rgba(255,255,255,0.88)", backdropFilter: "blur(12px)", borderRadius: "18px 18px 18px 4px", padding: "12px 36px 12px 14px", boxShadow: "0 2px 12px rgba(76,175,80,0.12)", border: "1px solid rgba(76,175,80,0.15)", position: "relative" }}>
                 <p style={{ margin: 0, fontSize: 13, color: "#2E7D32", fontWeight: 600, lineHeight: 1.5 }}>
-                  {SARA_MESSAGES[lesson.id] || "¡Presta atención a este contenido!"}
+                  {SHIELD_MESSAGES[lesson.id] || "¡Presta atención a este contenido!"}
                 </p>
-                <button onClick={() => setShieldVisible(false)} style={{ position: "absolute", top: 8, right: 10, background: "none", border: "none", cursor: "pointer", color: "#A5D6A7", fontSize: 18, padding: 0, lineHeight: 1, fontWeight: 300 }}>×</button>
+                <button onClick={() => setShieldVisible(false)} style={{ position: "absolute", top: 8, right: 10, background: "none", border: "none", cursor: "pointer", color: "#A5D6A7", fontSize: 18, padding: 0, lineHeight: 1 }}>×</button>
               </div>
             </div>
           )}
 
-          {/* Contenido de la lección */}
+          {/* Contenido */}
           <div style={{ margin: "14px 16px 0", display: "flex", flexDirection: "column", gap: 10 }}>
             {lesson.blocks.map((b, idx) => {
               if (b.type === "p") return (
-                <div key={idx} className="lesson-card-p" style={{ background: "white", borderRadius: 20, padding: "16px 18px", boxShadow: "0 2px 8px rgba(0,0,0,0.04)", border: "1px solid rgba(76,175,80,0.1)" }}>
+                <div key={idx} className="lesson-card" style={{ background: "rgba(255,255,255,0.86)", backdropFilter: "blur(10px)", borderRadius: 20, padding: "16px 18px", boxShadow: "0 2px 8px rgba(0,0,0,0.04)", border: "1px solid rgba(76,175,80,0.1)" }}>
                   <p style={{ margin: 0, fontSize: 15, lineHeight: 1.8, color: "#263238" }}>{b.text}</p>
                 </div>
               );
@@ -463,9 +473,9 @@ function LessonPage() {
               );
 
               if (b.type === "list") return (
-                <div key={idx} style={{ background: "white", borderRadius: 20, padding: "14px 16px", boxShadow: "0 2px 8px rgba(0,0,0,0.04)", border: "1px solid rgba(76,175,80,0.1)", display: "flex", flexDirection: "column", gap: 0 }}>
+                <div key={idx} style={{ background: "rgba(255,255,255,0.86)", backdropFilter: "blur(10px)", borderRadius: 20, padding: "14px 16px", boxShadow: "0 2px 8px rgba(0,0,0,0.04)", border: "1px solid rgba(76,175,80,0.1)" }}>
                   {b.items.map((it, j) => (
-                    <div key={j} style={{ display: "flex", alignItems: "flex-start", gap: 12, padding: "9px 0", borderBottom: j < b.items.length - 1 ? "1px solid #F1F8E9" : "none" }}>
+                    <div key={j} style={{ display: "flex", alignItems: "flex-start", gap: 12, padding: "9px 0", borderBottom: j < b.items.length - 1 ? "1px solid rgba(241,248,233,0.9)" : "none" }}>
                       <div style={{ width: 24, height: 24, borderRadius: 8, background: "linear-gradient(135deg,#E8F5E9,#C8E6C9)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: 1 }}>
                         <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#2E7D32" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
                       </div>
@@ -476,7 +486,7 @@ function LessonPage() {
               );
 
               return (
-                <div key={idx} style={{ background: "linear-gradient(135deg,#E8F5E9 0%,#F1F8E9 100%)", borderRadius: 20, padding: "16px 18px", border: "1px solid rgba(76,175,80,0.22)", display: "flex", gap: 14, alignItems: "flex-start" }}>
+                <div key={idx} style={{ background: "rgba(232,245,233,0.9)", backdropFilter: "blur(10px)", borderRadius: 20, padding: "16px 18px", border: "1px solid rgba(76,175,80,0.22)", display: "flex", gap: 14, alignItems: "flex-start" }}>
                   <div style={{ width: 40, height: 40, borderRadius: 12, background: "linear-gradient(135deg,#2E7D32,#1B5E20)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                     <Info size={18} color="white"/>
                   </div>
@@ -491,16 +501,16 @@ function LessonPage() {
 
           {/* Chip progreso */}
           <div style={{ margin: "20px 16px 0", display: "flex", justifyContent: "center" }}>
-            <div style={{ display: "inline-flex", alignItems: "center", gap: 6, background: "rgba(76,175,80,0.08)", border: "1px solid rgba(76,175,80,0.18)", borderRadius: 99, padding: "6px 16px" }}>
+            <div style={{ display: "inline-flex", alignItems: "center", gap: 6, background: "rgba(255,255,255,0.8)", backdropFilter: "blur(8px)", border: "1px solid rgba(76,175,80,0.18)", borderRadius: 99, padding: "6px 16px" }}>
               <ShieldCheck size={13} color="#2E7D32"/>
               <span style={{ fontSize: 12, color: "#2E7D32", fontWeight: 600 }}>Lección {i + 1} de {LESSONS.length} — {Math.round(progress)}% completado</span>
             </div>
           </div>
         </div>
 
-        {/* Bottom navigation */}
-        <div style={{ position: "fixed", bottom: 0, left: 0, right: 0, background: "rgba(255,255,255,0.92)", backdropFilter: "blur(16px)", borderTop: "1px solid rgba(76,175,80,0.12)", padding: "12px 24px 20px", display: "flex", alignItems: "center", justifyContent: "space-between", zIndex: 20 }}>
-          <button onClick={prev} style={{ width: 48, height: 48, borderRadius: "50%", background: "#F1F8E9", border: "1px solid rgba(76,175,80,0.2)", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer" }}>
+        {/* Bottom nav */}
+        <div style={{ position: "fixed", bottom: 0, left: 0, right: 0, background: "rgba(255,255,255,0.88)", backdropFilter: "blur(18px)", borderTop: "1px solid rgba(76,175,80,0.12)", padding: "12px 24px 20px", display: "flex", alignItems: "center", justifyContent: "space-between", zIndex: 20 }}>
+          <button onClick={prev} style={{ width: 48, height: 48, borderRadius: "50%", background: "rgba(241,248,233,0.9)", border: "1px solid rgba(76,175,80,0.2)", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer" }}>
             <ArrowLeft size={20} color="#2E7D32"/>
           </button>
           <div style={{ display: "flex", gap: 4, alignItems: "center" }}>
