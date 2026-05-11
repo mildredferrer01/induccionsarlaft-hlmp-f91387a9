@@ -59,7 +59,7 @@ export function generateCertificate(data: CertificateData) {
   doc.setTextColor(27, 94, 32);
   doc.setFontSize(26);
   doc.setFont("helvetica", "bold");
-  doc.text("CERTIFICADO DE INDUCCIÓN", W / 2, 57, { align: "center" });
+  doc.text("CERTIFICADO DE INDUCCIÓN-REINDUCCIÓN", W / 2, 57, { align: "center" });
 
   // Subtítulo
   doc.setFontSize(13);
